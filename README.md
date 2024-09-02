@@ -5,4 +5,4 @@ Este es el repositorio del grupo 1 del PAR 200 de Analisis y Diseño de Software
 *
 * **Tutor:** Vicente Ruiz
 ##  WIKI
-Puede acceder a la Wiki mediante el siguiente enlace: [enlace](https://github.com/Koffy04/GRUPO1-2024-PROYINF/wiki)
+Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Koffy04/GRUPO1-2024-PROYINF/wiki)
