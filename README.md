@@ -6,3 +6,8 @@ Este es el repositorio del grupo 1 del PAR 200 de Analisis y Diseño de Software
 * **Tutor:** Vicente Ruiz
 ##  WIKI
 Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Koffy04/GRUPO1-2024-PROYINF/wiki)
+## Supuestos
+* Las noticias que la IA catáloga están subidas en una sola biblioteca dígital.
+* El software cuenta con varios administradores para agilizar el proceso de creación de los boletínes.
+* Los autores capaces de subir noticias en la biblioteca digital son previamente verificados.
+* Un boletín puede no ser leido por ningún usuario.
