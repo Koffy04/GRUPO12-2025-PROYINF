@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Boletines</title>
+</head>
+<body>
+    <h1>Boletines</h1>
+    
+    <!--   FORMULARIO   -->
+    <form id="searchForm">
+        <label for="filtro"></label>
+        <select name="fil1" id="fil1">
+            <option value="td" selected>Categoría</option>
+            <option value="t1">Adaptación y Mitigación al Cambio climático </option>
+            <option value="t2">Gestión Sostenible de Recursos Hídricos </option>
+            <option value="t3">Sistemas Alimentarios Sostenibles </option>
+        </select>
+        <label for="filtro"></label>
+            <select name="fil2" id="fil2">
+            <option value="rd" selected>Región</option>
+            <option value="r1">I - Región de Arica y Parinacota</option>
+            <option value="r2">II - Región de Tarapacá</option>
+            <option value="r3">III - Región de Antofagasta</option>
+            <option value="r4">IV - Región de Atacama</option>
+            <option value="r5">V - Región de Coquimbo</option>
+            <option value="r6">VI - Región de Valparaíso</option>
+            <option value="r7">VII - Región Metropolitana de Santiago</option>
+            <option value="r8">VIII - Región del Libertador General Bernardo O'Higgins</option>
+            <option value="r9">IX - Región del Maule</option>
+            <option value="r10">X - Región de Ñuble</option>
+            <option value="r11">XI - Región del Biobío</option>
+            <option value="r12">XII - Región de La Araucanía</option>
+            <option value="r13">XIII - Región de Los Ríos</option>
+            <option value="r14">XIV - Región de Los Lagos</option>
+            <option value="r15">XV - Región de Aysén del General Carlos Ibáñez del Campo</option>
+            <option value="r16">XVI - Región de Magallanes y de la Antártica Chilena</option>
+        </select>
+        <label for = "filtro"></label>
+            <input type = "text" id = "k0" pattern="[A-Za-z\s]" placeholder = "Palabra Clave">
+        <input type="submit" value="Buscar">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>PDF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for boletin in boletines %}
+            <tr>
+                <td><strong>{{ boletin.nombre }}</strong></td>
+                <td>
+                    {% if boletin.archivo_boletin %}
+                    <a href="{{ boletin.archivo_boletin.url }}">
+                        <img src="{{ boletin.image.url }}" alt="{{ boletin.nombre }}" style="max-width: 100px;"/> <!-- Ajusta el tamaño de la imagen según sea necesario -->
+                    </a>
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No hay boletines disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+<p>
+    <a href="{% url 'inicio' %}" class="btn">Volver</a>
+</p>
+</html>
