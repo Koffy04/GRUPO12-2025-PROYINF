@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Boletines
 
 def boletines(request):
-    boletines = Boletines.objects.all()
+    boletines = Boletines.objects.all().order_by('timestamp').reverse()
     etiquetas = Boletines.objects.values_list('etiqueta', flat=True)
 
     etiquetas_unicas = set()
@@ -40,9 +40,10 @@ def buscar_boletin(request):
     return render(request, 'boletines.html', {'boletines': boletines , 'etiquetas_unicas': etiquetas_unicas})
 
 def inicio(request):
-    boletines = Boletines.objects.all()
+    boletines = Boletines.objects.all().order_by('timestamp').reverse()
     etiquetas = Boletines.objects.values_list('etiqueta', flat=True)
     etiquetas_unicas = set()
+    
     for lista_etiquetas in etiquetas:
         if lista_etiquetas:
             etiquetas_unicas.update(lista_etiquetas)
