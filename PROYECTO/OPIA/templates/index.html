@@ -82,19 +82,19 @@
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explorar por Categoría</h1>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item rounded p-4" href="">
+                        <a class="cat-item rounded p-4" href="buscar/?filtro1=Recursos+Hídricos&filtro2=f2&filtro3=">
                             <i class="bi bi-droplet-half fa-3x" style="color: #00B074"></i>
                             <h6 class="mb-3">Gestión Sostenibles de Recursos Hídricos</h6>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item rounded p-4" href="">
+                        <a class="cat-item rounded p-4" href="buscar/?filtro1=Cambio+Climatico&filtro2=f2&filtro3=">
                             <i class="fa fa-globe-americas fa-3x" style="color: #00B074"></i>
                             <h6 class="mb-3">Adaptación y Mitigación del Cambio Climático</h6>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item rounded p-4" href="">
+                        <a class="cat-item rounded p-4" href="buscar/?filtro1=Sistemas+Alimentarios&filtro2=f2&filtro3=">
                             <i class="fa fa-carrot fa-3x" style="color: #00B074"></i>
                             <h6 class="mb-3">Sistemas Alimentarios Sostenibles</h6>
                         </a>
@@ -119,8 +119,8 @@
                                         <img class="flex-shrink-0 img-fluid border rounded" src="{{ boletin.image.url }}"  alt="{{ boletin.nombre }}" style="width: 80px; height: 80px;">
                                         <div class="text-start ps-4">
                                             <h5 class="mb-3">{{ boletin.nombre }}</h5>
-                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>Los Lagos, Chile </span>
-                                            <span class="text-truncate me-3"><i class="far fa-calendar-alt text-primary me-2"></i>Junio 2024</span>
+                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ boletin.regiones }}</span>
+                                            <span class="text-truncate me-3"><i class="far fa-calendar-alt text-primary me-2"></i>{{ boletin.timestamp }}</span>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
