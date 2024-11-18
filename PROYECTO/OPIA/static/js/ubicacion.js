@@ -66,15 +66,14 @@ function getCity(coordinates) {
 			return; 
 		}  
         }finally{
-            console.log(mostrar_region);
 			var value = regiones[mostrar_region] ;
-			console.log(value);
+			if(value){
+				window.location.href = "/buscar/?filtro1=f1&filtro2="+value+"&filtro3=";
+			}
             //aca ya esta actualizado del valor
         }
 		   
 	} 
 } 
-
-
 
 
