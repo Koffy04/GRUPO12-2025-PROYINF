@@ -12,4 +12,4 @@ Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Koffy0
 * Los autores capaces de subir noticias en la biblioteca digital son previamente verificados.
 * Un boletín puede no ser leido por ningún usuario.
 
-### El Proyecto se seguira trabajando para este semestre
+### El Proyecto se seguira trabajando para este semestre 2025-1
