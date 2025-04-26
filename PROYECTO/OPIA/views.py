@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Boletines
+from .models import Boletines, correos
+from django.db import IntegrityError
 
 def boletines(request):
     boletines = Boletines.objects.all().order_by('timestamp').reverse()
@@ -52,3 +53,11 @@ def inicio(request):
     return render(request, 'index.html',{'boletines': boletines, 'etiquetas_unicas': etiquetas_unicas})
 
 
+def enviar_correo(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            correos.objects.create(email=email)
+        except IntegrityError:
+            pass  
+    return render(request, 'boletines.html')

@@ -30,6 +30,49 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        cuerpo{
+        display: center;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        }
+    
+        forma{
+        margin-left: 28rem;
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        text-align: center;
+        border: 1px solid #ccc;
+        display: inline-block;
+        justify-content: center
+        }
+    
+        input[type="email"] {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        }
+    
+        input[type="submit"] {
+        padding: 0.5rem 1rem;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        }
+    
+        input[type="submit"]:hover {
+        background-color: #45a049;
+        }
+    </style>
 </head>
 
 <body>
@@ -103,10 +146,10 @@
                         </div>
                         <div class="col-md-2" >
                             <input type="text" class="form-control border-0" id="filtro3" name="filtro3" placeholder="Palabra Clave" pattern=".*" />
-                        </div> 
+                        </div>
                         <div class="col-md-2">
                             <input type="submit" class="btn btn-dark border-0 w-100" value="Buscar">
-                        </div>   
+                        </div>
                     </form>
                     <button href="#" class="btn btn-dark border-0 w-100" onclick="getCoordintes()">Buscar en mi zona</button>
                 </div>
@@ -152,6 +195,12 @@
                 </tr>
                 {% endfor %}
             </div>
+        </div>
+        <forma> <form action="{% url 'enviar_correo' %}" method="POST">
+            {% csrf_token %}
+            <input type="email" name="email" required placeholder="Ingrese su correo:">
+            <input type="submit" value="Enviar archivo por correo"></forma>
+        
         </div>
         <!-- Jobs End -->
 
@@ -212,6 +261,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- Footer End -->
 
 

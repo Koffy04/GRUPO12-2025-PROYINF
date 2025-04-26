@@ -13,8 +13,12 @@ class Boletines(models.Model):
     fuente = models.CharField(max_length=50)
     image = models.ImageField(default='test.jpg')
 
+    
     def str(self):
         return f'{self.nombre}'
 
     def set_regiones(self, regiones_list):
         self.regiones = regiones_list
+
+class correos(models.Model):
+    email = models.EmailField(primary_key=True)
