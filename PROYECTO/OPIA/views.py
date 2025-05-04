@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Boletines, correos
+from .models import Boletines, correos, Perfil
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .forms import RegistroUsuario, LoginUsuario
-from .models import perfil
+from .forms import RegistroUsuario
 
 def boletines(request):
     boletines = Boletines.objects.all().order_by('timestamp').reverse()
@@ -64,27 +63,12 @@ def activar_notificaciones(request):
             pass  
     return render(request, 'boletines.html')
 
-#Regitro de Usuario
-def registro(request):
+def registro_view(request):
     if request.method == 'POST':
         form = RegistroUsuario(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Cambia esto según tu lógica
+            return redirect('inicio')  
     else:
         form = RegistroUsuario()
     return render(request, 'registro.html', {'form': form})
-
-#Inicio de sesión Usuario
-def iniciar_sesion(request):
-    if request.method == 'POST':
-        form = LoginUsuario(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            user.rol = perfil.Roles.LECTOR
-            user.save()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = LoginUsuario()
-    return render(request, 'login.html', {'form': form})
