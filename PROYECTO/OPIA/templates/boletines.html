@@ -196,7 +196,7 @@
                 {% endfor %}
             </div>
         </div>
-        <forma> <form action="{% url 'enviar_correo' %}" method="POST">
+        <forma> <form action="{% url 'activar_notificaciones' %}" method="POST">
             {% csrf_token %}
             <input type="email" name="email" required placeholder="Ingrese su correo:">
             <input type="submit" value="Enviar archivo por correo"></forma>

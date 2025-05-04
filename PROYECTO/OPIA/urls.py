@@ -6,5 +6,7 @@ urlpatterns = [
     path('boletines/', boletines, name='boletines'),
     path('', views.inicio, name='inicio'),
     path('buscar/', views.buscar_boletin, name='buscar_boletin'),
-    path('enviar_correo/', views.enviar_correo, name='enviar_correo') 
+    path('activar_notificaciones/', views.activar_notificaciones, name='activar_notificaciones'),
+    path('login/', views.iniciar_sesion, name='login'),
+    path('registro/', views.registro, name='registro')
 ]
