@@ -98,11 +98,21 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{% url 'inicio' %}" class="nav-item nav-link active">Inicio</a>
         </nav>
-        <forma> <form action="{% url 'activar_notificaciones' %}" method="POST">
+        <forma> <form method="POST">
             {% csrf_token %}
-            <input type="email" name="email" required placeholder="Ingrese su correo:">
-            <input type="email" name="email" required placeholder="Ingrese su correo:">
-            <input type="submit" value="Acceder"></forma>
+        
+            <div>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <small>{{ form.email.errors }}</small>
+            </div>
+        
+            <div>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <small>{{ form.password.errors }}</small>
+            </div>
+        
+            <button type="submit">Iniciar sesión</button>
+        </form></forma>
         
         </div>
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

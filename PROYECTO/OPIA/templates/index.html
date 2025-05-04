@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <title>OPIA - Bienvenida</title>
@@ -56,7 +58,12 @@
                     <a href="{% url 'inicio' %}" class="nav-item nav-link active">Inicio</a>
                 </div>
                 <a href="{% url 'boletines' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Boletines</a>
-                <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Acceder</a>
+                {% if perfil %}
+                    <p>Hola {{ perfil.nombre }}</p>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Acceder</a>
+                {% endif %}
                 </div>
         </nav>
         <!-- Navbar End -->

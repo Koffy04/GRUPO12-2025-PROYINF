@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Boletines, correos, Perfil
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from .forms import RegistroUsuario
+from .forms import RegistroUsuario, LoginUsuario
 
 def boletines(request):
     boletines = Boletines.objects.all().order_by('timestamp').reverse()
@@ -68,7 +68,23 @@ def registro_view(request):
         form = RegistroUsuario(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('inicio')  
+            return redirect('login')  
     else:
         form = RegistroUsuario()
     return render(request, 'registro.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginUsuario(request.POST)
+        if form.is_valid():
+            perfil = form.cleaned_data['perfil']
+            request.session['perfil_id'] = perfil.id  # Simula `login()`
+            return redirect('inicio')  # Redirige a tu página principal
+    else:
+        form = LoginUsuario()
+
+    return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    request.session.flush()  # Elimina todos los datos de sesión
+    return redirect('inicio')
