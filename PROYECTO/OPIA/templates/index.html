@@ -55,16 +55,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{% url 'inicio' %}" class="nav-item nav-link active">Inicio</a>
+                    <a href="{% url 'inicio' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Inicio</a>
                 </div>
-                <a href="{% url 'boletines' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Boletines</a>
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
                 {% if perfil %}
                     <p>Hola {{ perfil.nombre }}</p>
-                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Cerrar sesión</a>
                 {% else %}
-                    <a href="{% url 'login' %}">Acceder</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Acceder</a>
                 {% endif %}
                 </div>
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="{% url 'boletines' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Boletines</a>
+                </div>
+                
         </nav>
         <!-- Navbar End -->
 
