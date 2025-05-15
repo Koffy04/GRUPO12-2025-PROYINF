@@ -20,7 +20,7 @@ const regiones = {
     "Región Metropolitana de Santiago": 7
 };
 
-function getCoordintes() { 
+function getCoordinates() { 
 	var options = { 
 		enableHighAccuracy: true, 
 		timeout: 5000, 
@@ -75,5 +75,6 @@ function getCity(coordinates) {
 		   
 	} 
 } 
+
 
 

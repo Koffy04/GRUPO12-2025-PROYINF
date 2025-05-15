@@ -96,10 +96,9 @@
             </div>
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 {% if perfil %}
-                    <p>Hola {{ perfil.nombre }}</p>
-                    <a href="{% url 'logout' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Cerrar sesión</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Logout</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Acceder</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login</a>
                 {% endif %}
             </div>
             
@@ -157,7 +156,7 @@
                             <input type="submit" class="btn btn-dark border-0 w-100" value="Buscar">
                         </div>
                     </form>
-                    <button href="#" class="btn btn-dark border-0 w-100" onclick="getCoordintes()">Buscar en mi zona</button>
+                    <button href="#" class="btn btn-dark border-0 w-100" onclick="getCoordinates()">Buscar en mi zona</button>
                 </div>
             </div>
         </div>
@@ -202,10 +201,6 @@
                 {% endfor %}
             </div>
         </div>
-        <forma> <form action="{% url 'activar_notificaciones' %}" method="POST">
-            {% csrf_token %}
-            <input type="email" name="email" required placeholder="Ingrese su correo:">
-            <input type="submit" value="Enviar archivo por correo"></forma>
         
         </div>
         <!-- Jobs End -->

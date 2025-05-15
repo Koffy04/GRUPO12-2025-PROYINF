@@ -3,8 +3,22 @@ from .models import Perfil
 from django.contrib.auth.hashers import make_password, check_password
 
 class RegistroUsuario(forms.ModelForm):
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirmar Contraseña', widget=forms.PasswordInput)
+    nombre = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Nombre', 'class': 'form-control'})
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'placeholder': 'Correo electrónico', 'class': 'form-control'})
+    )
+    password1 = forms.CharField(
+        label="Contraseña",
+        widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': 'form-control'})
+    )
+    password2 = forms.CharField(
+        label="Confirmar contraseña",
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirmar contraseña', 'class': 'form-control'})
+    )
+
 
     class Meta:
         model = Perfil
@@ -30,7 +44,6 @@ class RegistroUsuario(forms.ModelForm):
         if commit:
             perfil.save()
         return perfil
-
 
 
 class LoginUsuario(forms.Form):

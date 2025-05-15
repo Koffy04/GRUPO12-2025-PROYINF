@@ -88,3 +88,12 @@ def login_view(request):
 def logout_view(request):
     request.session.flush()  # Elimina todos los datos de sesión
     return redirect('inicio')
+
+def eliminarc(request):
+    return redirect('eliminarc')
+
+def privacidad(request):
+    return redirect('privacidad')
+
+def terminosycondiciones(request):
+    return redirect('terminosycondiciones')
