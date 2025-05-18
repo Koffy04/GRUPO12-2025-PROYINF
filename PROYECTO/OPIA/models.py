@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
-import unittest
-from unittest.mock import patch, MagicMock
+from django.contrib.auth.models import AbstractUser
 
 class Boletines(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -25,70 +24,16 @@ class Boletines(models.Model):
 class correos(models.Model):
     email = models.EmailField(primary_key=True)
 
-class Perfil(models.Model):
+class Perfil(AbstractUser):
     email = models.EmailField(unique=True)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    password = models.CharField(max_length=128)  # Guarda el hash, no la contraseña en texto plano
     recibir_correos = models.BooleanField(default=False)
     
     class Roles(models.TextChoices):
-        ADMIN = 'admin', 'Administrador'
+        ADMIN = 'admin', 'Admin'
         EDITOR = 'editor', 'Editor'
         LECTOR = 'lector', 'Lector'
-
-    rol = models.CharField(max_length=10, choices=Roles.choices, default=Roles.LECTOR)
-
+        
+    rol = models.CharField(max_length=10, choices=Roles.choices, default=Roles.LECTOR)    
+    
     def __str__(self):
-        return self.email
-
-class TestUbicacionAPI(unittest.TestCase):
-    @patch('requests.get')  # Simula la función requests.get
-    def test_get_city_success(self, mock_get):
-        # Simula una respuesta exitosa de la API
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "address": {
-                "state": "Región Metropolitana de Santiago"
-            }
-        }
-        mock_get.return_value = mock_response
-
-        # Simula las coordenadas
-        lat, lng = "-33.4489", "-70.6693"
-        api_url = f"https://us1.locationiq.com/v1/reverse.php?key=pk.a73d396d2124f81921446f0ee1a967b5&lat={lat}&lon={lng}&format=json"
-
-        # Llama a la API simulada
-        response = mock_get(api_url)
-        data = response.json()
-
-        # Verifica que la API se haya llamado correctamente
-        mock_get.assert_called_once_with(api_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("state", data["address"])
-        self.assertEqual(data["address"]["state"], "Región Metropolitana de Santiago")
-
-    @patch('requests.get')
-    def test_get_city_failure(self, mock_get):
-        # Simula una respuesta fallida de la API
-        mock_response = MagicMock()
-        mock_response.status_code = 404
-        mock_response.json.return_value = {"error": "Not Found"}
-        mock_get.return_value = mock_response
-
-        # Simula las coordenadas
-        lat, lng = "-33.4489", "-70.6693"
-        api_url = f"https://us1.locationiq.com/v1/reverse.php?key=pk.a73d396d2124f81921446f0ee1a967b5&lat={lat}&lon={lng}&format=json"
-
-        # Llama a la API simulada
-        response = mock_get(api_url)
-
-        # Verifica que la API se haya llamado correctamente
-        mock_get.assert_called_once_with(api_url)
-        self.assertEqual(response.status_code, 404)
-        self.assertIn("error", response.json())
-        self.assertEqual(response.json()["error"], "Not Found")
-
-if __name__ == '__main__':
-    unittest.main()
+        return self.username

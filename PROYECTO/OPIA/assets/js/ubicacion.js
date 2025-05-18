@@ -59,7 +59,7 @@ function getCity(coordinates) {
 
 	function processRequest(e) { 
         try{
-          if (xhr.readyState == 4 && xhr.status == 200) { 
+           if (xhr.readyState == 4 && xhr.status == 200) { 
 			var response = JSON.parse(xhr.responseText); 
 			var state = response.address.state;
             mostrar_region = state; 
