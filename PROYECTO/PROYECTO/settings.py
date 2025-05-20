@@ -204,3 +204,5 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+X_FRAME_OPTIONS = 'ALLOWALL'

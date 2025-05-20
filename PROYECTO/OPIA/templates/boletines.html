@@ -177,7 +177,9 @@
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid border rounded" src="{{ boletin.image.url }}"  alt="{{ boletin.nombre }}" style="width: 80px; height: 80px;">
                                         <div class="text-start ps-4">
-                                            <h5 class="mb-3">{{ boletin.nombre }}</h5>
+                                            <h5 class="mb-3">
+                                                <a >{{ boletin.nombre }}</a>
+                                            </h5>
                                             <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ boletin.regiones }}</span>
                                             <span class="text-truncate me-3"><i class="far fa-calendar-alt text-primary me-2"></i>{{ boletin.timestamp }}</span>
                                         </div>
@@ -185,7 +187,7 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             {% if boletin.archivo_boletin %}
-                                            <a class="btn btn-primary" href="{{ boletin.archivo_boletin.url }}">Leer Boletin</a>
+                                            <a class="btn btn-primary" href="{% url 'boletin' boletin.pk %}">Leer Boletin</a>
                                             {% else %}
                                                 No disponible
                                             {% endif %}

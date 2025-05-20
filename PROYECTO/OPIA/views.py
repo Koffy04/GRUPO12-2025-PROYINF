@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Boletines, correos, Perfil
-from django.contrib.auth import authenticate, login, logout
+from .models import Boletines, correos
+from django.contrib.auth import logout
 from django.db import IntegrityError
 from .forms import RegistroUsuario
-from django.contrib.auth import authenticate, login, logout
+from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
+import requests
+from django.http import HttpResponse
+from django.views import View
 
 def boletines(request):
     boletines = Boletines.objects.all().order_by('timestamp').reverse()
@@ -86,3 +90,49 @@ def privacidad(request):
 
 def terminosycondiciones(request):
     return redirect('terminosycondiciones')
+
+class boletinDetailView(DetailView):
+    model = Boletines
+    template_name = 'boletin.html'
+    context_object_name = 'boletin'
+    
+
+
+import json
+
+class ConvertPdfToWordView(View):
+    def get(self, request, pk):
+        boletin = get_object_or_404(Boletines, pk=pk)
+        pdf_path = boletin.archivo_boletin.path  # ruta absoluta del PDF
+
+        convertapi_secret = 'secret_gAEU1GJ4UbFZUgNS'
+
+        with open(pdf_path, 'rb') as pdf_file:
+            files = {'File': pdf_file}
+            response = requests.post(
+                f'https://v2.convertapi.com/pdf/to/docx?Secret={convertapi_secret}&StoreFile=true',
+                files=files
+            )
+
+        try:
+            result = response.json()
+        except Exception:
+            return HttpResponse("La respuesta no fue JSON. Error crudo: " + response.text, status=500)
+
+        # Muestra el resultado completo como texto para depuración
+
+        if response.status_code == 200:
+
+            if 'Files' in result and result['Files'] and 'Url' in result['Files'][0]:
+                file_url = result['Files'][0]['Url']
+                word_file = requests.get(file_url)
+                return HttpResponse(
+                    word_file.content,
+                    content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    headers={'Content-Disposition': f'attachment; filename="{boletin.nombre}.docx"'}
+                )
+            else:
+                error_message = result.get('Message', 'Error desconocido en la conversión.')
+                return HttpResponse(f"Error en la conversión: {error_message}", status=500)
+        else:
+            return HttpResponse(f"Error en la conversión: {result}", status=500)
