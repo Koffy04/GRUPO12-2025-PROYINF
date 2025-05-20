@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'OPIA',
-    #'django.contrib.sites',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -50,6 +50,11 @@ INSTALLED_APPS = [
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
+        'APP': {
+            'client_id': '23061102683-qqou8e3lcs26nvt8ove5gftt0otbmh1o.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        },
         "SCOPE" : [
             "profile",
             "email"
@@ -57,6 +62,11 @@ SOCIALACCOUNT_PROVIDERS = {
         "AUTH_PARAMS" : {"access_type" : "online"}
     },
     'facebook': {
+        'APP': {
+            'client_id': '712429974616153',
+            'secret': '719e2db83d22caaec3e95549ce9871fc',
+            'key': ''
+        },
         'METHOD': 'oauth2',  # Set to 'js_sdk' to use the Facebook connect SDK
         'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
         'SCOPE': ['email', 'public_profile'],
@@ -88,7 +98,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'PROYECTO.urls'
@@ -188,9 +198,9 @@ AUTH_USER_MODEL = 'OPIA.Perfil'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'inicio'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'inicio'
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend"
+    "allauth.account.auth_backends.AuthenticationBackend",
 )

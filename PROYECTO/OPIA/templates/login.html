@@ -34,16 +34,42 @@
     <title>Login</title>
 </head>
 
-{% load socialaccount %}
-<div class="col-4">
-    <a href="{% provider_login_url "facebook" %}"><i class="fab fa-facebook"></i></a>
+<div class="container">
+	<div class="row d-flex justify-content-center mt-5">
+		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+			<div class="card py-3 px-2">
+				<p class="text-center mb-3 mt-2">INICIAR SESIÓN CON</p>
+				{% load socialaccount %}
+				<div class="row mx-auto ">
+					<div class="col-6">
+						<a href="{% provider_login_url 'google' %}?next=/"><i class="fab fa-google"></i></a>
+					</div>
+				</div>
+				<div class="division">
+					<div class="row">
+						<div class="col-12"><span>INICIAR SESIÓN CON CORREO</span></div>
+					</div>
+				</div>
+				<form method="POST" class="myform">
+                    {% csrf_token %}
+                    <div class="form-group">
+    					<input type="username" name="username" class="form-control" placeholder="Nombre de Usuario" required>
+                        <small>{{ form.username.errors }}</small>
+  					</div>
+ 					<div class="form-group">
+    					<input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        <small>{{ form.password.errors }}</small> 
+  					</div>
+  					<div class="form-group mt-3">
+  						<button type="submit" class="btn btn-block btn-primary btn-lg"><small>Conectarse</small></button>
+  					</div>
+					<p class="text-center mb-3 mt-2">O</p>
+					<div class="form-group mt-3">
+  						<a href="{% url 'registro' %}" class="btn btn-block btn-primary btn-lg"><small>Registrarse</small></a>
+  					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="col-4">
-    <a href="{% provider_login_url 'google' %}?next=/"><i class="fab fa-google"></i></a>
-</div>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Ingresar</button>
-</form>
-<p>¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
+</html>

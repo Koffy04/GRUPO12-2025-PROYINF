@@ -58,13 +58,13 @@
                     <a href="{% url 'inicio' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Inicio</a>
                 </div>
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                {% if user.is_authenticated %}
-                    <!-- Usuario logueado -->
-                    <a href="{% url 'logout' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Logout</a>
-                {% else %}
-                    <!-- Usuario no logueado -->
-                    <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login</a>
-                {% endif %}
+                    {% if user.is_authenticated %}
+                        <!-- Usuario logueado -->
+                        <a href="{% url 'logout' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Logout</a>
+                    {% else %}
+                        <!-- Usuario no logueado -->
+                        <a href="{% url 'login' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login</a>
+                    {% endif %}
                 </div>
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{% url 'boletines' %}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Boletines</a>
