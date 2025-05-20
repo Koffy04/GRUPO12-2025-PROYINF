@@ -2,7 +2,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Boletines, correos
+from .models import Boletines, correos, Perfil
 
 @receiver(post_save, sender=Boletines)
 def enviar_correos_boletin(sender, instance, created, **kwargs):
@@ -35,3 +35,12 @@ def enviar_correos_boletin(sender, instance, created, **kwargs):
             print("Correo enviado correctamente.")
         except Exception as e:
             print(f"Error al enviar el correo: {e}")
+
+@receiver(post_save, sender=Perfil)
+def actualizar_correos_activos(sender, instance, **kwargs):
+    if instance.recibir_correos:
+        # Agregar correo si no existe
+        correos.objects.get_or_create(email=instance.email)
+    else:
+        # Eliminar correo si existe
+        correos.objects.filter(email=instance.email).delete()
