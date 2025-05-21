@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 import requests
 from django.http import HttpResponse
 from django.views import View
+import json
 
 def boletines(request):
     boletines = Boletines.objects.all().order_by('timestamp').reverse()
@@ -96,10 +97,6 @@ class boletinDetailView(DetailView):
     template_name = 'boletin.html'
     context_object_name = 'boletin'
     
-
-
-import json
-
 class ConvertPdfToWordView(View):
     def get(self, request, pk):
         boletin = get_object_or_404(Boletines, pk=pk)

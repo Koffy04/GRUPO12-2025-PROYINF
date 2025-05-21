@@ -32,7 +32,6 @@ def enviar_correos_boletin(sender, instance, created, **kwargs):
 
         try:
             email.send(fail_silently=False)
-            print("Correo enviado correctamente.")
         except Exception as e:
             print(f"Error al enviar el correo: {e}")
 
