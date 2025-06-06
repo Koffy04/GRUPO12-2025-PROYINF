@@ -204,5 +204,5 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
-
+SOCIALACCOUNT_LOGIN_ON_GET=True
 X_FRAME_OPTIONS = 'ALLOWALL'
