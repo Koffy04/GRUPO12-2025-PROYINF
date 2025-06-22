@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from dotenv import load_dotenv
 from pathlib import Path
 import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,8 +53,8 @@ INSTALLED_APPS = [
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         'APP': {
-            'client_id': '23061102683-qqou8e3lcs26nvt8ove5gftt0otbmh1o.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': os.environ.get("GOOGLE_CLIENT_ID"),
+            'secret': os.environ.get("GOOGLE_CLIENT_SECRET"),
             'key': ''
         },
         "SCOPE" : [
@@ -63,8 +65,8 @@ SOCIALACCOUNT_PROVIDERS = {
     },
     'facebook': {
         'APP': {
-            'client_id': '712429974616153',
-            'secret': '719e2db83d22caaec3e95549ce9871fc',
+            'client_id': os.environ.get("FACEBOOK_CLIENT_ID"),
+            'secret': os.environ.get("FACEBOOK_CLIENT_SECRET"),
             'key': ''
         },
         'METHOD': 'oauth2',  # Set to 'js_sdk' to use the Facebook connect SDK

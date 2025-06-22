@@ -15,7 +15,7 @@ class LoginTests(unittest.TestCase):
         super().setUpClass()
         cls.User = get_user_model()
         cls.client = Client()
-        cls.user = cls.User.objects.create_user(username='testuser', email='test@test.com', password='12345')
+        cls.User = cls.User.objects.create_user(username='testuser', email='test@test.com', password='12345')
 
     def test_login_exitoso(self):
         client = Client()
